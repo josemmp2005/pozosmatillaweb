@@ -1,0 +1,353 @@
+---
+const navItems = [
+	{ name: "Inicio", href: "#inicio" },
+	{ name: "Servicios", href: "#servicios" },
+	{ name: "Galería", href: "#galeria" },
+	{ name: "Empresa", href: "#empresa" },
+	{ name: "Contacto", href: "#contacto" },
+];
+---
+
+<header
+	id="main-header"
+	class="fixed top-0 left-0 w-full z-[500] transition-all duration-500 bg-transparent py-4"
+>
+	<div
+		class="container mx-auto px-4 flex items-center justify-between relative z-[510]"
+	>
+		<!-- Logo Section -->
+		<a href="#inicio" class="flex items-center gap-3 group">
+			<div
+				class="w-12 h-12 md:w-15 md:h-15 rounded-lg overflow-hidden flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+			>
+				<img
+					src="/logo.png"
+					alt="Logo Pozos Matilla"
+					class="w-full h-full object-contain"
+				/>
+			</div>
+			<div class="flex flex-col">
+				<span
+					id="header-title"
+					class="text-2xl md:text-3xl font-bold font-passion text-brand-red leading-none uppercase tracking-tighter brand-text-shadow transition-colors duration-300"
+				>
+					Pozos Matilla S.L.
+				</span>
+				<span
+					class="text-[12px] md:text-[15px] font-bold uppercase tracking-[0.2em] mt-0.5 transition-colors duration-300 header-subtitle"
+					>Pozos y Perforaciones</span
+				>
+			</div>
+		</a>
+
+		<!-- Desktop Navigation -->
+		<nav class="hidden md:flex items-center gap-8">
+			{
+				navItems.map((item) => (
+					<a
+						href={item.href}
+						class="nav-link text-sm uppercase tracking-wide font-bold"
+					>
+						{item.name}
+					</a>
+				))
+			}
+			<a
+				href="tel:+34608856110"
+				class="btn-primary flex items-center gap-2 !py-2 !px-4 text-sm scale-100 hover:scale-105"
+			>
+				<img src="/icon/call.svg" alt="" class="w-4 h-4" />
+				608 856 110
+			</a>
+		</nav>
+
+		<!-- Mobile Menu Button (Hamburger) -->
+		<button
+			id="mobile-menu-btn"
+			class="md:hidden relative w-10 h-10 flex items-center justify-center z-[120] mobile-btn"
+			aria-label="Alternar menú"
+		>
+			<div class="hamburger-container">
+				<span class="hamburger-bar top"></span>
+				<span class="hamburger-bar middle"></span>
+				<span class="hamburger-bar bottom"></span>
+			</div>
+		</button>
+	</div>
+	<!-- Scroll Progress Bar -->
+	<div
+		id="scroll-progress-container"
+		class="absolute bottom-0 left-0 w-full h-[2px] bg-transparent z-[520]"
+	>
+		<div
+			id="scroll-progress"
+			class="h-full bg-brand-red w-0 transition-all duration-100"
+		>
+		</div>
+	</div>
+</header>
+
+<!-- Mobile Navigation Overlay - moved outside header for absolute stacking priority -->
+<div
+	id="mobile-menu"
+	class="fixed top-0 left-0 inset-0 bg-white/98 backdrop-blur-xl z-[9999] hidden flex-col items-center justify-center md:hidden"
+>
+	<div class="flex flex-col items-center gap-8 w-full px-10">
+		{
+			navItems.map((item, index) => (
+				<a
+					href={item.href}
+					class="mobile-nav-link text-4xl font-passion uppercase tracking-tight text-brand-blue hover:text-brand-red transition-all duration-500 transform translate-y-10 opacity-0"
+					style={`transition-delay: ${index * 100 + 200}ms`}
+				>
+					{item.name}
+				</a>
+			))
+		}
+		<div
+			class="mt-8 w-full max-w-xs transform translate-y-10 opacity-0 transition-all duration-700"
+			style={`transition-delay: ${navItems.length * 100 + 200}ms`}
+			id="mobile-call-container"
+		>
+			<a
+				href="tel:+34608856110"
+				class="btn-primary !flex items-center justify-center gap-4 text-xl w-full"
+			>
+				<img src="/icon/call.svg" alt="" class="w-6 h-6" />
+				Llamar Ahora
+			</a>
+		</div>
+	</div>
+
+	<!-- Bottom Brand Mark in Menu -->
+	<div
+		class="absolute bottom-10 left-0 w-full flex flex-col items-center opacity-0 transform translate-y-10 transition-all duration-700"
+		id="mobile-brand-footer"
+	>
+		<span
+			class="text-xs font-bold uppercase tracking-widest text-brand-blue"
+			>Pozos Matilla S.L.</span
+		>
+	</div>
+</div>
+
+<style>
+	/* Header Logic Transitions */
+	.nav-link {
+		color: white;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	}
+	.header-subtitle {
+		color: rgba(255, 255, 255, 0.9);
+	}
+	.mobile-btn {
+		color: white;
+	}
+
+	header.scrolled {
+		background-color: rgba(255, 255, 255, 0.95);
+		backdrop-filter: blur(12px);
+		box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.1);
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+	}
+
+	header.scrolled .nav-link {
+		color: #374151;
+		text-shadow: none;
+	}
+
+	header.scrolled .header-subtitle {
+		color: #102f75; /* brand-blue */
+	}
+
+	header.scrolled .mobile-btn {
+		color: #102f75; /* brand-blue */
+	}
+
+	/* Logic for when the mobile menu is open - keep header above the overlay */
+	header.menu-is-open {
+		z-index: 10000 !important;
+		background-color: transparent !important;
+		backdrop-filter: none !important;
+		box-shadow: none !important;
+	}
+
+	header.menu-is-open #scroll-progress-container {
+		display: none !important;
+	}
+
+	header.menu-is-open .nav-link,
+	header.menu-is-open .header-subtitle,
+	header.menu-is-open .mobile-btn {
+		color: #102f75 !important; /* Force dark blue for visibility on the light menu bg */
+	}
+
+	/* Hide everything when Lightbox is open */
+	:global(body.lightbox-is-open) #main-header {
+		opacity: 0 !important;
+		visibility: hidden !important;
+		pointer-events: none !important;
+		transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+	}
+
+	/* Hamburger Animation */
+	.hamburger-container {
+		width: 24px;
+		height: 18px;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.hamburger-bar {
+		display: block;
+		width: 100%;
+		height: 2.5px;
+		background-color: currentColor;
+		border-radius: 4px;
+		transition:
+			transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+			opacity 0.3s ease,
+			background-color 0.3s ease;
+	}
+
+	/* Active State for Hamburger */
+	#mobile-menu-btn.active .top {
+		transform: translateY(8px) rotate(45deg);
+	}
+	#mobile-menu-btn.active .middle {
+		opacity: 0;
+		transform: translateX(-10px);
+	}
+	#mobile-menu-btn.active .bottom {
+		transform: translateY(-7.5px) rotate(-45deg);
+	}
+
+	/* When menu is open, make sure button is always blue/dark even if not scrolled */
+	#mobile-menu-btn.active {
+		color: #102f75 !important;
+	}
+
+	/* Mobile Menu Animation Classes */
+	#mobile-menu {
+		opacity: 0;
+		transition: opacity 0.4s ease-in-out;
+		pointer-events: none;
+	}
+
+	#mobile-menu.open {
+		display: flex !important;
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	#mobile-menu.open .mobile-nav-link,
+	#mobile-menu.open #mobile-call-container,
+	#mobile-menu.open #mobile-brand-footer {
+		transform: translateY(0);
+		opacity: 1;
+	}
+
+	.nav-link:hover {
+		color: #dc211c !important;
+	}
+</style>
+
+<script>
+	function initMenu() {
+		const header = document.getElementById("main-header");
+		const btn = document.getElementById("mobile-menu-btn");
+		const menu = document.getElementById("mobile-menu");
+		const body = document.body;
+
+		if (!btn || !menu) return;
+
+		// Mobile Menu Toggle
+		function toggleMenu() {
+			if (!menu || !btn) return;
+			const isOpen = menu.classList.contains("open");
+
+			if (!isOpen) {
+				menu.classList.remove("hidden");
+				header?.classList.add("menu-is-open");
+				// Force a reflow or use double RAF to ensure display:flex is applied
+				requestAnimationFrame(() => {
+					requestAnimationFrame(() => {
+						menu.classList.add("open");
+						btn.classList.add("active");
+						body.style.overflow = "hidden";
+					});
+				});
+			} else {
+				menu.classList.remove("open");
+				btn.classList.remove("active");
+				header?.classList.remove("menu-is-open");
+				body.style.overflow = "";
+				// Wait for animation to finish before adding hidden
+				setTimeout(() => {
+					if (menu && !menu.classList.contains("open")) {
+						menu.classList.add("hidden");
+					}
+				}, 400); // Match transition duration
+			}
+		}
+
+		btn.addEventListener("click", (e) => {
+			e.preventDefault();
+			toggleMenu();
+		});
+
+		// Close menu on link click
+		const links = menu.querySelectorAll("a");
+		links.forEach((link) => {
+			link.addEventListener("click", () => {
+				if (!menu || !btn) return;
+				menu.classList.remove("open");
+				btn.classList.remove("active");
+				header?.classList.remove("menu-is-open");
+				body.style.overflow = "";
+				setTimeout(() => {
+					if (menu && !menu.classList.contains("open")) {
+						menu.classList.add("hidden");
+					}
+				}, 400);
+			});
+		});
+
+		// Scroll Logic
+		window.addEventListener(
+			"scroll",
+			() => {
+				// Header Scroll Effect
+				if (window.scrollY > 50) {
+					header?.classList.add("scrolled");
+				} else {
+					header?.classList.remove("scrolled");
+				}
+
+				// Progress Bar Logic
+				const winScroll =
+					document.body.scrollTop ||
+					document.documentElement.scrollTop;
+				const height =
+					document.documentElement.scrollHeight -
+					document.documentElement.clientHeight;
+				const scrolled = (winScroll / height) * 100;
+				const progressBar = document.getElementById("scroll-progress");
+				if (progressBar) {
+					progressBar.style.width = scrolled + "%";
+				}
+			},
+			{ passive: true },
+		);
+	}
+
+	// Initialize
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", initMenu);
+	} else {
+		initMenu();
+	}
+</script>

@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import About from "../components/About.astro";
+import Gallery from "../components/Gallery.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+	title="Pozos Matilla S.L. | Pozos, Excavaciones y Perforaciones en Palma del Río"
+>
+	<Header />
+
+	<main>
+		<Hero />
+		<Services />
+		<About />
+		<Gallery />
+		<Contact />
+	</main>
+
+	<Footer />
+
+	<!-- Floating WhatsApp / Call Button for conversion (Mobile Only) -->
+	<a
+		href="tel:+34608856110"
+		class="md:hidden fixed bottom-6 right-6 z-[60] bg-brand-red text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl animate-bounce hover:animate-none group active:scale-95 transition-all"
+		aria-label="Llamar a Pozos Matilla"
+	>
+		<img src="/icon/call.svg" alt="Llamar" class="w-8 h-8" />
+		<span class="absolute -top-1 -right-1 flex h-4 w-4">
+			<span
+				class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"
+			></span>
+			<span class="relative inline-flex rounded-full h-4 w-4 bg-white"
+			></span>
+		</span>
+	</a>
+</Layout>
+
+<style>
+	/* Custom smooth entry for sections */
+	main > section {
+		scroll-margin-top: 80px;
+	}
+</style>

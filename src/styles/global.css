@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-red: #dc211c;
+  --color-brand-blue: #102f75;
+  --font-passion: "Passion One", sans-serif;
+  --font-sans: "Inter", "Roboto", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-brand: 2px 2px 0px var(--color-brand-blue);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans bg-gray-50 text-gray-900;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-passion;
+  }
+}
+
+@layer components {
+  .brand-text-shadow {
+    text-shadow: 2px 2px 4px rgba(16, 47, 117, 0.4);
+  }
+
+  .btn-primary {
+    @apply bg-brand-red text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:bg-red-700 hover:scale-105 active:scale-95 shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-brand-blue text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:bg-blue-900 hover:scale-105 active:scale-95 shadow-lg;
+  }
+
+  .nav-link {
+    @apply text-gray-700 hover:text-brand-red font-medium transition-colors duration-200;
+  }
+
+  /* Scroll Reveal Animations */
+  .reveal {
+    opacity: 0;
+    transition:
+      opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+      transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-up {
+    transform: translateY(30px);
+  }
+
+  .reveal-left {
+    transform: translateX(-30px);
+  }
+
+  .reveal-right {
+    transform: translateX(30px);
+  }
+
+  .reveal.revealed {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}

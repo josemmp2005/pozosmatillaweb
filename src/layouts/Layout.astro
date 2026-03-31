@@ -1,0 +1,82 @@
+---
+import "../styles/global.css";
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const {
+	title,
+	description = "Pozos Matilla S.L. - Expertos en pozos, excavaciones y perforaciones en Palma del Río, Córdoba.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/logo.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- SEO Meta Tags -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="es_ES" />
+	</head>
+	<body class="selection:bg-brand-red selection:text-white">
+		<slot />
+
+		<script>
+			// Scroll Reveal Shared Logic
+			function initReveal() {
+				const observerOptions = {
+					root: null,
+					rootMargin: '0px',
+					threshold: 0.1
+				};
+
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							// Check if it's a staggered container or a single element
+							if (entry.target.classList.contains('reveal-group')) {
+								const children = entry.target.querySelectorAll('.reveal');
+								children.forEach((child, index) => {
+									setTimeout(() => {
+										child.classList.add('revealed');
+									}, index * 150); // Stagger duration
+								});
+							} else {
+								entry.target.classList.add('revealed');
+							}
+							
+							// Once revealed, we don't need to observe it anymore
+							observer.unobserve(entry.target);
+						}
+					});
+				}, observerOptions);
+
+				// Elements to reveal
+				const revealElements = document.querySelectorAll('.reveal:not(.reveal-group .reveal), .reveal-group');
+				revealElements.forEach(el => observer.observe(el));
+			}
+
+			// Run on load and after Astro swaps
+			initReveal();
+			document.addEventListener('astro:after-swap', initReveal);
+		</script>
+	</body>
+</html>
