@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Preloader from "../components/Preloader.astro";
 
 interface Props {
 	title: string;
@@ -35,8 +36,18 @@ const {
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="es_ES" />
+
+		<!-- Critical CSS for Preloader - prevents flash of content/scrollbar -->
+		<style is:inline>
+			body.loading {
+				overflow: hidden !important;
+				height: 100vh !important;
+				touch-action: none !important;
+			}
+		</style>
 	</head>
-	<body class="selection:bg-brand-red selection:text-white">
+	<body class="selection:bg-brand-red selection:text-white loading">
+		<Preloader />
 		<slot />
 
 		<script>

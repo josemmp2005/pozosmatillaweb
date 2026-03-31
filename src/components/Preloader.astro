@@ -1,0 +1,150 @@
+---
+
+---
+
+<div
+	id="preloader"
+	class="fixed inset-0 z-[100000] bg-brand-blue flex flex-col items-center justify-center transition-all duration-1000 ease-in-out"
+>
+	<!-- Animated Background Elements -->
+	<div class="absolute inset-0 overflow-hidden pointer-events-none">
+		<div
+			class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-brand-red/5 rounded-full blur-[120px] animate-pulse"
+		>
+		</div>
+		<div
+			class="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-white/5 rounded-full blur-[120px] animate-pulse"
+			style="animation-delay: 1s"
+		>
+		</div>
+	</div>
+
+	<div class="relative flex flex-col items-center">
+		<!-- Central Logo & Ring -->
+		<div
+			class="relative w-32 h-32 md:w-48 md:h-48 mb-8 flex items-center justify-center"
+		>
+			<!-- Outer Rotating Ring -->
+			<div class="absolute inset-0 border-4 border-white/5 rounded-full">
+			</div>
+			<div
+				class="absolute inset-0 border-t-4 border-brand-red rounded-full animate-spin-slow"
+			>
+			</div>
+
+			<!-- Pulsing Logo Container -->
+			<div
+				class="relative w-[70%] h-[70%] rounded-2xl flex items-center justify-center p-4 animate-logo-pulse"
+			>
+				<img
+					src="/logo.png"
+					alt="Pozos Matilla"
+					class="w-full h-full object-contain"
+				/>
+			</div>
+		</div>
+
+		<!-- Text Counter / Message -->
+		<div class="text-center">
+			<h2
+				class="text-white font-black text-2xl md:text-3xl tracking-[0.3em] uppercase mb-2 animate-text-reveal"
+			>
+				POZOS <span class="text-brand-red">MATILLA</span>
+			</h2>
+			<div class="flex items-center justify-center gap-3">
+				<span class="w-8 h-[1px] bg-white/20"></span>
+				<p
+					class="text-white/50 text-[10px] font-bold uppercase tracking-[0.5em] animate-pulse"
+				>
+					Cargando...
+				</p>
+				<span class="w-8 h-[1px] bg-white/20"></span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	@keyframes spin-slow {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes logo-pulse {
+		0%,
+		100% {
+			transform: scale(1);
+			filter: brightness(1);
+		}
+		50% {
+			transform: scale(1.05);
+			filter: brightness(1.1);
+		}
+	}
+
+	@keyframes text-reveal {
+		0% {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.animate-spin-slow {
+		animation: spin-slow 2s linear infinite;
+	}
+
+	.animate-logo-pulse {
+		animation: logo-pulse 2s ease-in-out infinite;
+	}
+
+	.animate-text-reveal {
+		animation: text-reveal 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+	}
+
+	/* Prevent interaction while preloader is active */
+	:global(body.loading) {
+		overflow: hidden !important;
+		touch-action: none !important;
+	}
+
+	#preloader.loaded {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+</style>
+
+<script>
+	function handlePreloader() {
+		const preloader = document.getElementById("preloader");
+		const body = document.body;
+
+		// Initial state
+		body.classList.add("loading");
+
+		// Handle window load
+		window.addEventListener("load", () => {
+			// Small delay for smooth transition even on fast connections
+			setTimeout(() => {
+				if (preloader) {
+					preloader.classList.add("loaded");
+				}
+				body.classList.remove("loading");
+			}, 800);
+		});
+	}
+
+	// Run immediately
+	handlePreloader();
+
+	// Support view transitions if needed
+	document.addEventListener("astro:after-swap", handlePreloader);
+</script>
