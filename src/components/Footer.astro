@@ -2,16 +2,24 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-100 py-16 border-t border-gray-200">
-	<div class="container mx-auto px-4">
+<footer
+	class="bg-gray-950 py-20 border-t border-white/5 relative overflow-hidden"
+>
+	<!-- Decorative background element -->
+	<div
+		class="absolute top-0 right-0 w-1/2 h-1/2 bg-brand-red/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"
+	>
+	</div>
+
+	<div class="container mx-auto px-4 relative z-10">
 		<div
-			class="flex flex-col md:flex-row justify-between items-start gap-12 mb-12"
+			class="flex flex-col lg:flex-row justify-between items-start gap-16 mb-16"
 		>
-			<!-- Branding -->
-			<div class="max-w-xs">
-				<div class="flex items-center gap-3 mb-6">
+			<!-- Branding & Contact Icons -->
+			<div class="max-w-md">
+				<div class="flex items-center gap-4 mb-8">
 					<div
-						class="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center"
+						class="w-14 h-14 rounded-2xl overflow-hidden flex items-center justify-center p-2"
 					>
 						<img
 							src="/logo.png"
@@ -21,23 +29,29 @@ const currentYear = new Date().getFullYear();
 					</div>
 					<div class="flex flex-col">
 						<span
-							class="text-2xl font-bold font-passion text-brand-red tracking-tighter uppercase brand-text-shadow"
+							class="text-2xl font-bold text-brand-red tracking-tighter uppercase brand-text-shadow leading-none"
 							>Pozos Matilla S.L.</span
 						>
 						<span
-							class="text-2xl font-bold font-passion text-brand-blue tracking-tighter uppercase brand-text-shadow"
+							class="text-xl font-bold text-gray-400 tracking-tight uppercase"
 							>Pozos y Perforaciones</span
 						>
 					</div>
 				</div>
-				<p class="text-gray-500 text-sm leading-relaxed mb-6 italic">
+				<p
+					class="text-gray-400 text-lg leading-relaxed mb-8 font-medium italic"
+				>
 					Especialistas en pozos y excavaciones con más de 30 años de
-					experiencia técnica.
+					experiencia técnica en toda Andalucía.
 				</p>
-				<div class="flex gap-4">
+
+				<!-- Action Icons Row -->
+				<div class="flex flex-wrap gap-4">
+					<!-- TikTok -->
 					<a
-						href="#"
-						class="w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-brand-blue hover:bg-brand-red hover:text-white transition-all shadow-sm"
+						href="https://www.tiktok.com/@franciscomatillac"
+						aria-label="TikTok"
+						class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-brand-red hover:border-brand-red transition-all duration-300 group shadow-lg"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -49,15 +63,38 @@ const currentYear = new Date().getFullYear();
 							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
-							class="lucide lucide-facebook"
+							class="lucide lucide-music-2"
+							><circle cx="8" cy="18" r="4"></circle><path
+								d="M12 18V2l7 4"></path></svg
+						>
+					</a>
+					<!-- Phone -->
+					<a
+						href="tel:+34608856110"
+						aria-label="Llamar"
+						class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-brand-red hover:border-brand-red transition-all duration-300 group shadow-lg"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-phone"
 							><path
-								d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+								d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
 							></path></svg
 						>
 					</a>
+					<!-- Email -->
 					<a
-						href="#"
-						class="w-10 h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center text-brand-blue hover:bg-brand-red hover:text-white transition-all shadow-sm"
+						href="mailto:pozosfranciscomatilla@gmail.com"
+						aria-label="Email"
+						class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-brand-red hover:border-brand-red transition-all duration-300 group shadow-lg"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -69,90 +106,87 @@ const currentYear = new Date().getFullYear();
 							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
-							class="lucide lucide-instagram"
-							><rect
+							class="lucide lucide-mail"
+							><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+							></path><rect
 								width="20"
-								height="20"
+								height="16"
 								x="2"
-								y="2"
-								rx="5"
-								ry="5"></rect><path
-								d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-							></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"
-							></line></svg
+								y="5"
+								rx="2"></rect></svg
 						>
 					</a>
 				</div>
 			</div>
 
-			<!-- Links -->
-			<div class="grid grid-cols-2 gap-16">
-				<div class="space-y-4">
+			<!-- Navigation Links -->
+			<div class="grid grid-cols-2 gap-12 sm:gap-24">
+				<div class="space-y-6">
 					<h4
-						class="text-brand-blue font-black uppercase text-sm tracking-widest border-b-2 border-brand-red w-fit pb-1"
+						class="text-white font-bold uppercase text-sm tracking-[0.2em] border-b-2 border-brand-red w-fit pb-2"
 					>
 						Empresa
 					</h4>
 					<ul
-						class="space-y-2 text-sm text-gray-600 font-medium tracking-wide"
+						class="space-y-4 text-gray-400 font-bold uppercase text-xs tracking-widest"
 					>
 						<li>
 							<a
 								href="#inicio"
-								class="hover:text-brand-red transition-colors"
+								class="hover:text-brand-red transition-colors inline-block"
 								>Inicio</a
 							>
 						</li>
 						<li>
 							<a
 								href="#servicios"
-								class="hover:text-brand-red transition-colors"
+								class="hover:text-brand-red transition-colors inline-block"
 								>Servicios</a
 							>
 						</li>
 						<li>
 							<a
 								href="#empresa"
-								class="hover:text-brand-red transition-colors"
+								class="hover:text-brand-red transition-colors inline-block"
 								>Nosotros</a
 							>
 						</li>
 						<li>
 							<a
 								href="#galeria"
-								class="hover:text-brand-red transition-colors"
+								class="hover:text-brand-red transition-colors inline-block"
 								>Proyectos</a
 							>
 						</li>
 					</ul>
 				</div>
-				<div class="space-y-4">
+				<div class="space-y-6">
 					<h4
-						class="text-brand-blue font-black uppercase text-sm tracking-widest border-b-2 border-brand-red w-fit pb-1"
+						class="text-white font-bold uppercase text-sm tracking-[0.2em] border-b-2 border-brand-red w-fit pb-2"
 					>
 						Legal
 					</h4>
 					<ul
-						class="space-y-2 text-sm text-gray-600 font-medium tracking-wide"
+						class="space-y-4 text-gray-400 font-bold uppercase text-xs tracking-widest"
 					>
 						<li>
 							<a
 								href="#"
-								class="hover:text-brand-red transition-colors"
+								class="hover:text-brand-red transition-colors inline-block"
 								>Aviso Legal</a
 							>
 						</li>
 						<li>
 							<a
 								href="#"
-								class="hover:text-brand-red transition-colors"
+								class="hover:text-brand-red transition-colors inline-block"
 								>Privacidad</a
 							>
 						</li>
 						<li>
 							<a
 								href="#"
-								class="hover:text-brand-red transition-colors"
+								class="hover:text-brand-red transition-colors inline-block"
 								>Cookies</a
 							>
 						</li>
@@ -160,21 +194,21 @@ const currentYear = new Date().getFullYear();
 				</div>
 			</div>
 
-			<!-- CTA / Location -->
-			<div class="space-y-6">
+			<!-- Location & Main CTA -->
+			<div class="space-y-8 min-w-[280px]">
 				<h4
-					class="text-brand-blue font-black uppercase text-sm tracking-widest border-b-2 border-brand-red w-fit pb-1"
+					class="text-white font-bold uppercase text-sm tracking-[0.2em] border-b-2 border-brand-red w-fit pb-2"
 				>
 					Nuestra Central
 				</h4>
-				<div class="flex items-start gap-4">
+				<div class="flex items-start gap-5">
 					<div
-						class="p-2 bg-brand-red/10 rounded-lg text-brand-red transition-colors"
+						class="p-3 bg-brand-red/10 rounded-2xl text-brand-red shadow-inner"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
-							width="20"
-							height="20"
+							width="24"
+							height="24"
 							viewBox="0 0 24 24"
 							fill="none"
 							stroke="currentColor"
@@ -189,12 +223,12 @@ const currentYear = new Date().getFullYear();
 					</div>
 					<div>
 						<p
-							class="text-sm font-bold text-gray-700 leading-tight uppercase"
+							class="text-white font-bold text-lg leading-none uppercase tracking-tight mb-1"
 						>
 							Palma del Río
 						</p>
 						<p
-							class="text-xs text-gray-500 font-semibold uppercase"
+							class="text-sm text-gray-500 font-bold uppercase tracking-widest"
 						>
 							Córdoba, España
 						</p>
@@ -202,20 +236,36 @@ const currentYear = new Date().getFullYear();
 				</div>
 				<a
 					href="tel:+34608856110"
-					class="btn-primary w-full text-center py-4 flex items-center justify-center gap-2"
+					class="btn-primary w-full text-center py-5 flex items-center justify-center gap-3 text-lg group shadow-2xl shadow-brand-red/10"
 				>
-					Llamada Directa
+					Llamar Ahora
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="3"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="transition-transform group-hover:scale-110"
+						><path
+							d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+						></path></svg
+					>
 				</a>
 			</div>
 		</div>
 
 		<div
-			class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4"
+			class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6"
 		>
 			<p
-				class="text-xs text-gray-500 font-bold uppercase tracking-widest"
+				class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.3em]"
 			>
-				&copy; {currentYear} Pozos Matilla S.L. Todos los derechos reservados.
+				&copy; {currentYear} Pozos Matilla S.L. &bull; Todos los derechos
+				reservados.
 			</p>
 		</div>
 	</div>
