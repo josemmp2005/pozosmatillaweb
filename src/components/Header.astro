@@ -21,7 +21,7 @@ const navItems = [
 		<!-- Logo Section -->
 		<a href="#inicio" class="flex items-center gap-3 group">
 			<div
-				class="w-12 h-12 md:w-15 md:h-15 rounded-lg overflow-hidden flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+				class="w-12 h-12 lg:w-15 lg:h-15 rounded-lg overflow-hidden flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
 			>
 				<Image
 					src={logo}
@@ -38,19 +38,19 @@ const navItems = [
 			<div class="flex flex-col">
 				<span
 					id="header-title"
-					class="text-2xl md:text-3xl font-bold font-passion text-brand-red leading-none uppercase tracking-tighter brand-text-shadow transition-colors duration-300"
+					class="text-2xl lg:text-3xl font-bold font-passion text-brand-red leading-none uppercase tracking-tighter brand-text-shadow transition-colors duration-300"
 				>
 					Pozos Matilla S.L.
 				</span>
 				<span
-					class="text-[12px] md:text-[15px] font-bold uppercase tracking-[0.2em] mt-0.5 transition-colors duration-300 header-subtitle"
+					class="text-[12px] lg:text-[15px] font-bold uppercase tracking-[0.2em] mt-0.5 transition-colors duration-300 header-subtitle"
 					>Pozos y Perforaciones</span
 				>
 			</div>
 		</a>
 
 		<!-- Desktop Navigation -->
-		<nav class="hidden md:flex items-center gap-8">
+		<nav class="hidden lg:flex items-center gap-8">
 			{
 				navItems.map((item) => (
 					<a
@@ -73,7 +73,7 @@ const navItems = [
 		<!-- Mobile Menu Button (Hamburger) -->
 		<button
 			id="mobile-menu-btn"
-			class="md:hidden relative w-10 h-10 flex items-center justify-center z-[120] mobile-btn"
+			class="lg:hidden relative w-10 h-10 flex items-center justify-center z-[120] mobile-btn"
 			aria-label="Alternar menú"
 		>
 			<div class="hamburger-container">
@@ -99,7 +99,7 @@ const navItems = [
 <!-- Mobile Navigation Overlay - moved outside header for absolute stacking priority -->
 <div
 	id="mobile-menu"
-	class="fixed top-0 left-0 inset-0 bg-white/98 backdrop-blur-xl z-[9999] hidden flex-col items-center justify-center md:hidden"
+	class="fixed top-0 left-0 inset-0 bg-white/98 backdrop-blur-xl z-[9999] hidden flex-col items-center justify-center lg:hidden"
 >
 	<div class="flex flex-col items-center gap-8 w-full px-10">
 		{
