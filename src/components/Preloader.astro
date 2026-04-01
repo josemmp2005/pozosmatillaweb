@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
 
 ---
 
@@ -36,9 +38,15 @@
 			<div
 				class="relative w-[70%] h-[70%] rounded-2xl flex items-center justify-center p-4 animate-logo-pulse"
 			>
-				<img
-					src="/logo.png"
+				<Image
+					src={logo}
 					alt="Pozos Matilla"
+					width={72}
+					height={72}
+					sizes="72px"
+					quality={50}
+					loading="eager"
+					decoding="async"
 					class="w-full h-full object-contain"
 				/>
 			</div>
@@ -126,25 +134,45 @@
 	function handlePreloader() {
 		const preloader = document.getElementById("preloader");
 		const body = document.body;
+		if (!preloader) return;
+		if (preloader.dataset.bound === "true") return;
+		preloader.dataset.bound = "true";
 
-		// Initial state
+		// Ensure body lock only while preloader is visible.
 		body.classList.add("loading");
 
-		// Handle window load
-		window.addEventListener("load", () => {
-			// Small delay for smooth transition even on fast connections
-			setTimeout(() => {
-				if (preloader) {
-					preloader.classList.add("loaded");
-				}
-				body.classList.remove("loading");
-			}, 800);
-		});
+		let hasClosed = false;
+		const closePreloader = () => {
+			if (hasClosed) return;
+			hasClosed = true;
+			preloader.classList.add("loaded");
+			body.classList.remove("loading");
+		};
+
+		const isMobile = window.matchMedia("(max-width: 767px)").matches;
+		const minDisplay = isMobile ? 180 : 320;
+		const maxDisplay = isMobile ? 700 : 1200;
+
+		// Show briefly for branding, then close as soon as DOM is ready.
+		const minDelayTimer = window.setTimeout(closePreloader, minDisplay);
+
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", () => {
+				window.setTimeout(closePreloader, 120);
+			}, { once: true });
+		} else {
+			window.setTimeout(closePreloader, 120);
+		}
+
+		// Hard cap to avoid long LCP delays if resources are slow.
+		const fallbackTimer = window.setTimeout(closePreloader, maxDisplay);
+
+		preloader.addEventListener("transitionend", () => {
+			window.clearTimeout(minDelayTimer);
+			window.clearTimeout(fallbackTimer);
+		}, { once: true });
 	}
 
 	// Run immediately
 	handlePreloader();
-
-	// Support view transitions if needed
-	document.addEventListener("astro:after-swap", handlePreloader);
 </script>

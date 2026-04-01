@@ -132,28 +132,28 @@ const currentYear = new Date().getFullYear();
 					>
 						<li>
 							<a
-								href="#inicio"
+								href="/#inicio"
 								class="hover:text-brand-red transition-colors inline-block"
 								>Inicio</a
 							>
 						</li>
 						<li>
 							<a
-								href="#servicios"
+								href="/#servicios"
 								class="hover:text-brand-red transition-colors inline-block"
 								>Servicios</a
 							>
 						</li>
 						<li>
 							<a
-								href="#empresa"
+								href="/#empresa"
 								class="hover:text-brand-red transition-colors inline-block"
 								>Nosotros</a
 							>
 						</li>
 						<li>
 							<a
-								href="#galeria"
+								href="/#galeria"
 								class="hover:text-brand-red transition-colors inline-block"
 								>Proyectos</a
 							>
@@ -171,21 +171,21 @@ const currentYear = new Date().getFullYear();
 					>
 						<li>
 							<a
-								href="#"
+								href="/aviso-legal"
 								class="hover:text-brand-red transition-colors inline-block"
 								>Aviso Legal</a
 							>
 						</li>
 						<li>
 							<a
-								href="#"
+								href="/politica-privacidad"
 								class="hover:text-brand-red transition-colors inline-block"
 								>Privacidad</a
 							>
 						</li>
 						<li>
 							<a
-								href="#"
+								href="/politica-cookies"
 								class="hover:text-brand-red transition-colors inline-block"
 								>Cookies</a
 							>
@@ -261,12 +261,17 @@ const currentYear = new Date().getFullYear();
 		<div
 			class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6"
 		>
-			<p
-				class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.3em]"
-			>
-				&copy; {currentYear} Pozos Matilla S.L. &bull; Todos los derechos
-				reservados.
-			</p>
+			<div class="flex flex-col gap-2 text-center md:text-left">
+				<p
+					class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.3em]"
+				>
+					&copy; {currentYear} Pozos Matilla S.L. &bull; Todos los derechos
+					reservados.
+				</p>
+				<p class="text-[10px] text-gray-500/70 tracking-widest uppercase font-semibold">
+					Desarrollado por José María Mayén Pérez &bull; <a href="mailto:josemayenp@gmail.com" class="hover:text-brand-red transition-colors">josemayenp@gmail.com</a>
+				</p>
+			</div>
 		</div>
 	</div>
 </footer>

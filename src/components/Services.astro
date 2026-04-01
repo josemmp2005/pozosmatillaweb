@@ -1,24 +1,29 @@
 ---
+import { Image } from 'astro:assets';
+import imgHormigon from '../assets/images/hormigon.webp';
+import imgService3 from '../assets/images/service3.webp';
+import imgService2 from '../assets/images/service2.webp';
+
 const services = [
 	{
 		id: 'pozos',
 		title: 'Construcción de Pozos',
 		description: 'Construimos pozos con tubos de hormigón en distintos diámetros, adaptándonos a cada tipo de terreno y necesidad. Además, gestionamos la tramitación completa de proyectos para la ejecución de pozos.',
-		image: '/images/hormigon.webp',
+		image: imgHormigon,
 		features: ['Tubos de hormigón en varios diámetros', 'Adaptación a cualquier terreno', 'Tramitación de proyectos', 'Gestión integral de la ejecución']
 	},
 	{
 		id: 'excavaciones',
 		title: 'Excavaciones y Tierras',
 		description: 'Llevamos a cabo excavaciones, tomas de aguas sucias y extracción de tierras en profundidad, abarcando todo tipo de trabajos de movimiento de tierras con profesionalidad y eficacia.',
-		image: '/images/service3.webp',
+		image: imgService3,
 		features: ['Excavaciones', 'Tomas de aguas sucias', 'Extracción de tierras profundas', 'Movimiento de tierras']
 	},
 	{
 		id: 'perforaciones',
 		title: 'Limpieza de Pozos',
 		description: 'Gestionamos limpiezas de pozos a mano y mediante barrenos laterales para recuperar y mantener el óptimo rendimiento de sus instalaciones de captación de agua.',
-		image: '/images/service2.webp',
+		image: imgService2,
 		features: ['Limpieza a mano', 'Barrenos laterales', 'Recuperación de caudal', 'Mantenimiento del pozo']
 	}
 ];
@@ -51,7 +56,7 @@ const services = [
 					</span>
 
 					<div class="h-72 overflow-hidden relative">
-						<img 
+						<Image 
 							src={service.image} 
 							alt={service.title} 
 							class="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110"

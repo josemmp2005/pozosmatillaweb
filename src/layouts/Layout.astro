@@ -29,7 +29,15 @@ const {
 		<link
 			href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
+			media="print"
+			onload="this.media='all'"
 		/>
+		<noscript>
+			<link
+				href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap"
+				rel="stylesheet"
+			/>
+		</noscript>
 
 		<!-- SEO Meta Tags -->
 		<meta property="og:title" content={title} />
@@ -46,13 +54,16 @@ const {
 			}
 		</style>
 	</head>
-	<body class="selection:bg-brand-red selection:text-white loading">
+	<body class="selection:bg-brand-red selection:text-white">
 		<Preloader />
 		<slot />
 
 		<script>
 			// Scroll Reveal Shared Logic
 			function initReveal() {
+				const revealElements = document.querySelectorAll('.reveal:not(.reveal-group .reveal), .reveal-group');
+				if (revealElements.length === 0) return;
+
 				const observerOptions = {
 					root: null,
 					rootMargin: '0px',
@@ -81,13 +92,11 @@ const {
 				}, observerOptions);
 
 				// Elements to reveal
-				const revealElements = document.querySelectorAll('.reveal:not(.reveal-group .reveal), .reveal-group');
 				revealElements.forEach(el => observer.observe(el));
 			}
 
 			// Run on load and after Astro swaps
 			initReveal();
-			document.addEventListener('astro:after-swap', initReveal);
 		</script>
 	</body>
 </html>

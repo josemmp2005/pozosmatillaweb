@@ -1,5 +1,4 @@
 ---
-
 ---
 
 <section
@@ -9,11 +8,14 @@
 	<!-- Background Image with Overlay -->
 	<div class="absolute inset-0 z-0">
 		<video
-			src="/videos/hero.mp4"
-			autoplay
+			data-src="/videos/hero.mp4"
 			loop
 			muted
 			playsinline
+			preload="none"
+			poster="/images/hero.webp"
+			aria-hidden="true"
+			id="hero-video"
 			class="w-full h-full object-cover scale-x-[-1]"></video>
 		<div
 			class="absolute inset-0 bg-gradient-to-r from-brand-blue/60 via-brand-blue/60 to-transparent"
@@ -47,8 +49,8 @@
 			>
 				En <span class="font-bold text-white">Pozos Matilla S.L.</span> somos
 				especialistas en perforaciones, pozos y movimientos de tierra en Palma
-				del Río y toda Córdoba. Más de 30 años de experiencia técnica a su
-				servicio.
+				del Río, comarca y toda Andalucía. Más de 30 años de experiencia técnica
+				a su servicio.
 			</p>
 
 			<div
@@ -186,3 +188,42 @@
 		</div>
 	</div>
 </section>
+
+<script>
+	function initHeroVideo() {
+		const video = document.getElementById("hero-video") as HTMLVideoElement | null;
+		if (!video) return;
+
+		const isMobile = window.matchMedia("(max-width: 767px)").matches;
+		if (isMobile) {
+			video.removeAttribute("src");
+			video.load();
+			return;
+		}
+
+		const videoSrc = video.dataset.src;
+		if (!videoSrc) return;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (!entry.isIntersecting) return;
+					if (!video.getAttribute("src")) {
+						video.src = videoSrc;
+					}
+					video
+						.play()
+						.catch(() => {
+							// Autoplay can be blocked in some contexts; poster remains visible.
+						});
+					observer.disconnect();
+				});
+			},
+			{ threshold: 0.1 },
+		);
+
+		observer.observe(video);
+	}
+
+	initHeroVideo();
+</script>

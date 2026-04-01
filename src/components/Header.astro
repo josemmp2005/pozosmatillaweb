@@ -1,10 +1,13 @@
 ---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+
 const navItems = [
-	{ name: "Inicio", href: "#inicio" },
-	{ name: "Servicios", href: "#servicios" },
-	{ name: "Galería", href: "#galeria" },
-	{ name: "Empresa", href: "#empresa" },
-	{ name: "Contacto", href: "#contacto" },
+	{ name: "Inicio", href: "/#inicio" },
+	{ name: "Servicios", href: "/#servicios" },
+	{ name: "Galería", href: "/#galeria" },
+	{ name: "Empresa", href: "/#empresa" },
+	{ name: "Contacto", href: "/#contacto" },
 ];
 ---
 
@@ -20,9 +23,15 @@ const navItems = [
 			<div
 				class="w-12 h-12 md:w-15 md:h-15 rounded-lg overflow-hidden flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
 			>
-				<img
-					src="/logo.png"
+				<Image
+					src={logo}
 					alt="Logo Pozos Matilla"
+					width={60}
+					height={60}
+					sizes="(max-width: 767px) 48px, 60px"
+					quality={70}
+					loading="eager"
+					decoding="async"
 					class="w-full h-full object-contain"
 				/>
 			</div>
@@ -188,7 +197,9 @@ const navItems = [
 		opacity: 0 !important;
 		visibility: hidden !important;
 		pointer-events: none !important;
-		transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+		transition:
+			opacity 0.3s ease-in-out,
+			visibility 0.3s ease-in-out;
 	}
 
 	/* Hamburger Animation */
@@ -263,6 +274,8 @@ const navItems = [
 		const body = document.body;
 
 		if (!btn || !menu) return;
+		if (btn.dataset.bound === "true") return;
+		btn.dataset.bound = "true";
 
 		// Mobile Menu Toggle
 		function toggleMenu() {

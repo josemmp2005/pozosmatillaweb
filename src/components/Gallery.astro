@@ -1,4 +1,10 @@
 ---
+import { Image } from 'astro:assets';
+import bento1 from '../assets/images/bento1.webp';
+import bento2 from '../assets/images/bento2.webp';
+import bento4 from '../assets/images/bento4.webp';
+import heroImg from '../assets/images/hero.webp';
+
 const galleryItems = [
 	{ 
 		type: 'video', 
@@ -10,7 +16,7 @@ const galleryItems = [
 	},
 	{ 
 		type: 'image', 
-		src: '/images/bento2.webp', 
+		src: bento2, 
 		alt: 'Cimentaciones Especiales',
 		category: 'Cimentación',
 		stats: 'Obras Civiles',
@@ -26,7 +32,7 @@ const galleryItems = [
 	},
 	{ 
 		type: 'image', 
-		src: '/images/bento1.webp', 
+		src: bento1, 
 		alt: 'Maquinaria de Última Generación',
 		category: 'Flota Industrial',
 		stats: 'Maquinaria Propia',
@@ -42,7 +48,7 @@ const galleryItems = [
 	},
 	{ 
 		type: 'image', 
-		src: '/images/bento4.webp', 
+		src: bento4, 
 		alt: 'Perforaciones para Pozos',
 		category: 'Captaciones',
 		stats: 'Maquinaria Especializada',
@@ -77,16 +83,22 @@ const galleryItems = [
 			{galleryItems.map((item) => (
 				<div 
 					class={`group relative overflow-hidden rounded-3xl border border-white/5 bg-gray-900/50 backdrop-blur-sm transition-all duration-700 hover:border-white/20 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer bento-item reveal reveal-up ${item.span}`}
-					data-src={item.src}
+					data-src={typeof item.src === 'string' ? item.src : (item.src as ImageMetadata).src}
 					data-type={item.type}
 					data-alt={item.alt}
 				>
 					
 					{item.type === 'image' ? (
 						<>
-							<img 
-								src={item.src} 
+							<Image 
+								src={item.src as ImageMetadata} 
 								alt={item.alt} 
+								width={640}
+								height={480}
+								sizes="(max-width: 767px) 92vw, (max-width: 1023px) 48vw, 24vw"
+								quality={55}
+								loading="lazy"
+								decoding="async"
 								class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0 opacity-80 group-hover:opacity-100"
 							/>
 							
@@ -109,11 +121,11 @@ const galleryItems = [
 					) : (
 						<div class="relative w-full h-full flex flex-col items-center justify-center bg-gray-950 overflow-hidden">
 							<video 
-								src={item.src} 
-								autoplay 
+								data-src={item.src as string}
 								muted 
 								loop 
 								playsinline 
+								preload="none"
 								class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
 							/>
 							
@@ -145,7 +157,7 @@ const galleryItems = [
 		<div class="mt-20 relative rounded-[40px] overflow-hidden bg-brand-blue/10 border border-white/10 group reveal reveal-up">
 			<!-- Decorative image background for CTA -->
 			<div class="absolute inset-0 opacity-10 grayscale group-hover:opacity-20 transition-opacity duration-700">
-				<img src="/images/hero.webp" alt="" class="w-full h-full object-cover" />
+				<Image src={heroImg} alt="" loading="lazy" decoding="async" width={960} height={540} quality={50} sizes="(max-width: 1023px) 100vw, 960px" class="w-full h-full object-cover" />
 			</div>
 			
 			<div class="relative z-10 p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10">
@@ -215,6 +227,33 @@ const galleryItems = [
 		const body = document.body;
 
 		if (!lightbox || !closeBtn || !content || !items) return;
+		if (lightbox.dataset.bound === 'true') return;
+		lightbox.dataset.bound = 'true';
+
+		const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
+		const inlineVideos = document.querySelectorAll("#galeria video[data-src]") as NodeListOf<HTMLVideoElement>;
+		if (!isMobile) {
+			const mediaObserver = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						const video = entry.target as HTMLVideoElement;
+						if (entry.isIntersecting) {
+							if (!video.src) {
+								const src = video.dataset.src;
+								if (src) video.src = src;
+							}
+							video.play().catch(() => {});
+						} else {
+							video.pause();
+						}
+					});
+				},
+				{ threshold: 0.2 },
+			);
+
+			inlineVideos.forEach((video) => mediaObserver.observe(video));
+		}
 
 		function openLightbox(item: any) {
 			const src = item.getAttribute('data-src');
@@ -283,6 +322,5 @@ const galleryItems = [
 
 	// Initialize on page load and on Astro swap
 	initLightbox();
-	document.addEventListener('astro:after-swap', initLightbox);
 </script>
 

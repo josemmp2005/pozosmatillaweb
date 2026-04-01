@@ -1,5 +1,6 @@
 ---
-
+import { Image } from 'astro:assets';
+import sectionFoto from '../assets/images/section-foto.webp';
 ---
 
 <section id="empresa" class="py-24 bg-white relative overflow-hidden">
@@ -34,8 +35,8 @@
 					<div
 						class="relative bg-gray-100 rounded-[40px] overflow-hidden shadow-2xl border border-gray-100 ring-1 ring-black/5"
 					>
-						<img
-							src="/images/section-foto.webp"
+						<Image
+							src={sectionFoto}
 							alt="Equipos y maquinaria de Pozos Matilla S.L."
 							class="w-full h-[600px] object-cover transition-transform duration-[2s] group-hover:scale-105"
 						/>
