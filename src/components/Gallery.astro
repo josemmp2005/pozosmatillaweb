@@ -4,16 +4,16 @@ const galleryItems = [
 		type: 'video', 
 		src: '/videos/bento-video2.mp4', 
 		alt: 'Perforación en terreno rocoso',
-		category: 'En Directo',
-		stats: 'Obra Córdoba',
+		category: 'En Acción',
+		stats: 'Córdoba',
 		span: 'md:col-span-1 md:row-span-2' 
 	},
 	{ 
 		type: 'image', 
-		src: '/images/bento2.jpg', 
-		alt: 'Maquinaria de Última Generación',
-		category: 'Flota Industrial',
-		stats: 'Maquinaria Propia',
+		src: '/images/bento2.webp', 
+		alt: 'Cimentaciones Especiales',
+		category: 'Cimentación',
+		stats: 'Obras Civiles',
 		span: 'md:col-span-2 md:row-span-2'
 	},
 	{ 
@@ -26,25 +26,32 @@ const galleryItems = [
 	},
 	{ 
 		type: 'image', 
-		src: '/images/bento1.jpg', 
-		alt: 'Excavación para cimentación', 
-		category: 'Excavaciones',
-		stats: 'Obras Civiles',
+		src: '/images/bento1.webp', 
+		alt: 'Maquinaria de Última Generación',
+		category: 'Flota Industrial',
+		stats: 'Maquinaria Propia',
 		span: 'md:col-span-2 md:row-span-1' 
 	},
 	{ 
+		type: 'video', 
+		src: '/videos/bento-video3.mp4', 
+		alt: 'Excavación para cimentación',
+		category: 'Excavaciones',
+		stats: 'Córdoba',
+		span: 'md:col-span-1 md:row-span-1' 
+	},
+	{ 
 		type: 'image', 
-		src: '/images/bento3.jpg', 
-		alt: 'Movimiento de Tierras Industrial',
-		category: 'Movimientos',
-		stats: 'Grandes Superficies',
-		span: 'md:col-span-2 md:row-span-1' 
+		src: '/images/bento4.webp', 
+		alt: 'Perforaciones para Pozos',
+		category: 'Captaciones',
+		stats: 'Maquinaria Especializada',
+		span: 'md:col-span-1 md:row-span-1' 
 	}
 ];
 ---
 
 <section id="galeria" class="py-24 bg-gray-950 text-white relative overflow-hidden">
-	<!-- Background abstract elements -->
 	<div class="absolute top-0 right-0 w-1/3 h-1/3 bg-brand-red/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
 	<div class="absolute bottom-0 left-0 w-1/3 h-1/3 bg-brand-blue/5 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/2"></div>
 
@@ -95,7 +102,7 @@ const galleryItems = [
 							
 							<div class="absolute bottom-0 left-0 w-full p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
 								<p class="text-brand-red font-bold text-xs uppercase tracking-[0.2em] mb-1 drop-shadow-lg">{item.stats}</p>
-								<h3 class="text-white font-bold text-xl md:text-2xl uppercase tracking-tighter leading-none mb-1">{item.alt}</h3>
+								<h3 class="text-white font-normal text-xl md:text-2xl uppercase tracking-tighter leading-none mb-1">{item.alt}</h3>
 								<div class="w-0 group-hover:w-16 h-1 bg-brand-red transition-all duration-700 delay-100"></div>
 							</div>
 						</>
@@ -122,7 +129,7 @@ const galleryItems = [
 							
 							<div class="absolute bottom-0 left-0 w-full p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 z-10">
 								<p class="text-brand-red font-bold text-xs uppercase tracking-[0.2em] mb-1 drop-shadow-lg">{item.stats}</p>
-								<h3 class="text-white font-bold text-xl md:text-2xl uppercase tracking-tighter leading-none mb-1">{item.alt}</h3>
+								<h3 class="text-white font-normal text-xl md:text-2xl uppercase tracking-tighter leading-none mb-1">{item.alt}</h3>
 								<div class="w-0 group-hover:w-16 h-1 bg-brand-red transition-all duration-700 delay-100"></div>
 							</div>
 						</div>
@@ -138,7 +145,7 @@ const galleryItems = [
 		<div class="mt-20 relative rounded-[40px] overflow-hidden bg-brand-blue/10 border border-white/10 group reveal reveal-up">
 			<!-- Decorative image background for CTA -->
 			<div class="absolute inset-0 opacity-10 grayscale group-hover:opacity-20 transition-opacity duration-700">
-				<img src="/images/hero.png" alt="" class="w-full h-full object-cover" />
+				<img src="/images/hero.webp" alt="" class="w-full h-full object-cover" />
 			</div>
 			
 			<div class="relative z-10 p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10">

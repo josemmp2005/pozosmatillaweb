@@ -3,23 +3,23 @@ const services = [
 	{
 		id: 'pozos',
 		title: 'Construcción de Pozos',
-		description: 'Más de 30 años de experiencia técnica en pozos para riego agrícola e industrial con garantía de caudal y legalización.',
-		image: '/images/service-pozos.png',
-		features: ['Estudio terreno', 'Obra civil', 'Mantenimiento', 'Legalización']
+		description: 'Construimos pozos con tubos de hormigón en distintos diámetros, adaptándonos a cada tipo de terreno y necesidad. Además, gestionamos la tramitación completa de proyectos para la ejecución de pozos.',
+		image: '/images/hormigon.webp',
+		features: ['Tubos de hormigón en varios diámetros', 'Adaptación a cualquier terreno', 'Tramitación de proyectos', 'Gestión integral de la ejecución']
 	},
 	{
 		id: 'excavaciones',
 		title: 'Excavaciones y Tierras',
-		description: 'Movimiento de tierras de gran volumen, nivelaciones precisas y excavaciones para cimientos industriales y residenciales.',
-		image: '/images/service-excavaciones.png',
-		features: ['Maquinaria propia', 'Nivelación láser', 'Cimentaciones', 'Retirada escombros']
+		description: 'Llevamos a cabo excavaciones, tomas de aguas sucias y extracción de tierras en profundidad, abarcando todo tipo de trabajos de movimiento de tierras con profesionalidad y eficacia.',
+		image: '/images/service3.webp',
+		features: ['Excavaciones', 'Tomas de aguas sucias', 'Extracción de tierras profundas', 'Movimiento de tierras']
 	},
 	{
 		id: 'perforaciones',
-		title: 'Perforaciones Especiales',
-		description: 'Perforaciones verticales de gran profundidad para geotermia, captación de aguas profundas y micropilotajes.',
-		image: '/images/service-perforaciones.png',
-		features: ['Alta profundidad', 'Precisión vertical', 'Geotermia', 'Terrenos difíciles']
+		title: 'Limpieza de Pozos',
+		description: 'Gestionamos limpiezas de pozos a mano y mediante barrenos laterales para recuperar y mantener el óptimo rendimiento de sus instalaciones de captación de agua.',
+		image: '/images/service2.webp',
+		features: ['Limpieza a mano', 'Barrenos laterales', 'Recuperación de caudal', 'Mantenimiento del pozo']
 	}
 ];
 ---
@@ -38,13 +38,13 @@ const services = [
 				NUESTROS <span class="text-brand-red">SERVICIOS</span>
 			</h2>
 			<p class="text-gray-600 text-lg md:text-xl font-medium leading-relaxed">
-				Ofrecemos soluciones integrales con tecnología de vanguardia y maquinaria propia, garantizando precisión en cada proyecto industrial y agrícola.
+				Ofrecemos servicios de excavaciones, limpiezas de pozos, tomas de aguas sucias, extracción de tierras en profundidad, construcción de pozos con tubos de hormigón y gestión de proyectos.
 			</p>
 		</div>
 
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-10 reveal-group">
 			{services.map((service, index) => (
-				<div class="group relative bg-white rounded-[40px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100 hover:shadow-[0_40px_80px_rgba(16,47,117,0.12)] transition-all duration-700 hover:-translate-y-3 reveal reveal-up">
+				<div class="group relative bg-white rounded-[40px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100 hover:shadow-[0_40px_80px_rgba(16,47,117,0.12)] transition-all duration-700 hover:-translate-y-3 reveal reveal-up flex flex-col">
 					<!-- Visual Counter -->
 					<span class="absolute top-4 right-8 text-9xl font-bold text-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none select-none">
 						{String(index + 1).padStart(2, '0')}
@@ -67,7 +67,7 @@ const services = [
 						</div>
 					</div>
 					
-					<div class="p-10 relative">
+					<div class="p-10 relative flex flex-col flex-1">
 						<p class="text-gray-600 mb-8 leading-relaxed font-semibold text-lg">
 							{service.description}
 						</p>
@@ -83,8 +83,8 @@ const services = [
 							))}
 						</ul>
 						
-						<div class="pt-6 border-t border-gray-50">
-							<a href="#contacto" class="btn-secondary w-full !py-4 flex items-center justify-center gap-3 text-sm font-bold uppercase tracking-widest bg-gray-50 hover:bg-brand-red hover:text-white border-transparent transition-all">
+						<div class="pt-6 border-t border-gray-50 mt-auto">
+							<a href="#contacto" class="w-full py-4 flex items-center justify-center gap-3 text-sm font-bold uppercase tracking-widest rounded-lg bg-gray-100 text-gray-800 hover:bg-brand-red hover:text-white transition-all duration-300">
 								Consultar Detalles
 								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
 							</a>
