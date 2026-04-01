@@ -149,22 +149,44 @@ import logo from "../assets/logo.png";
 			body.classList.remove("loading");
 		};
 
+		let minTimeElapsed = false;
+		let heroReady = false;
+
+		const tryClose = () => {
+			if (minTimeElapsed && heroReady) {
+				closePreloader();
+			}
+		};
+
 		const isMobile = window.matchMedia("(max-width: 767px)").matches;
-		const minDisplay = isMobile ? 180 : 320;
-		const maxDisplay = isMobile ? 700 : 1200;
+		const minDisplay = isMobile ? 250 : 420;
+		const maxDisplay = isMobile ? 6500 : 8000;
 
-		// Show briefly for branding, then close as soon as DOM is ready.
-		const minDelayTimer = window.setTimeout(closePreloader, minDisplay);
+		const minDelayTimer = window.setTimeout(() => {
+			minTimeElapsed = true;
+			tryClose();
+		}, minDisplay);
 
-		if (document.readyState === "loading") {
-			document.addEventListener("DOMContentLoaded", () => {
-				window.setTimeout(closePreloader, 120);
-			}, { once: true });
+		const heroVideo = document.getElementById("hero-video") as HTMLVideoElement | null;
+
+		if (!heroVideo) {
+			heroReady = true;
+			tryClose();
+		} else if (heroVideo.readyState >= 2) {
+			heroReady = true;
+			tryClose();
 		} else {
-			window.setTimeout(closePreloader, 120);
+			window.addEventListener(
+				"hero-video-ready",
+				() => {
+					heroReady = true;
+					tryClose();
+				},
+				{ once: true },
+			);
 		}
 
-		// Hard cap to avoid long LCP delays if resources are slow.
+		// Hard cap to avoid locking UI forever if network/video fails.
 		const fallbackTimer = window.setTimeout(closePreloader, maxDisplay);
 
 		preloader.addEventListener("transitionend", () => {

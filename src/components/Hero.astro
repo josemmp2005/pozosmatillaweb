@@ -195,6 +195,21 @@
 		const videoSrc = video.dataset.src;
 		if (!videoSrc) return;
 
+		let hasNotifiedReady = false;
+		const notifyHeroReady = () => {
+			if (hasNotifiedReady) return;
+			hasNotifiedReady = true;
+			window.dispatchEvent(new CustomEvent("hero-video-ready"));
+		};
+
+		video.addEventListener("loadeddata", notifyHeroReady, { once: true });
+		video.addEventListener("canplay", notifyHeroReady, { once: true });
+		video.addEventListener("error", notifyHeroReady, { once: true });
+
+		if (video.readyState >= 2) {
+			notifyHeroReady();
+		}
+
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
@@ -206,6 +221,7 @@
 						.play()
 						.catch(() => {
 							// Autoplay can be blocked in some contexts; poster remains visible.
+							notifyHeroReady();
 						});
 					observer.disconnect();
 				});
